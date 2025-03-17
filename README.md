@@ -249,7 +249,14 @@ I also created the following marketing materials for the company:
     <img src="Images/SohoOknaFlyer.png" alt="Soho Okna Flyer">
 </p>
 
+<!-- CONTACT -->
+## Contact
+
+Jakub Nowak - [@LinkedIn Profile](https://www.linkedin.com/in/jakub-nowak-a245312b7/)
+<br/> jakubszymonnowak@gmail.com
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [HomePageDesktop]: Images/SohoOknaHomePageDesktop.png
