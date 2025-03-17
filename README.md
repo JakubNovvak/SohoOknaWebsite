@@ -1,43 +1,137 @@
-<div><br/>
-
-  <p align="center">
-    <img src="Images/LogoUpdated.svg" alt="Soho Okna Logo" style="width: 250px">
-    <h2 align="center">Soho Okna - Website development and other IT services</h2>
-  </p>
-    
-</div>
-
-**Soho Okna** is a small company I have been working with since the end of July. Our collaboration consisted of general IT services (e.g., domain and e-mail configuration), graphic designs (which can be seen below as well), and website development. There are plans to create a CMS server but at the momemnt, the website is just static site made with **React**.
+<div><br/> <p align="center"> <img src="Images/LogoUpdated.svg" alt="Soho Okna Logo" style="width: 250px"> <h2 align="center">Soho Okna - Website Development and Other IT Services</h2> </p> </div>
+Soho Okna is a small company I have been collaborating with since the end of July. Our partnership involved a range of IT services (e.g., domain and email configuration), graphic design work (examples below), and website development. There are plans to create a CMS server, but currently, the website is a static site built using React.
 
 <br>
 
-You can see the current state of the development <a href="https://sohooknatesting.onrender.com">right here</a>.
+You can view the current development state <a href="https://sohooknatesting.onrender.com">here</a>.
 
-At the moment <a href="https://soho-okna.pl">soho-okna.pl </a> contains only a placeholder page.
+Currently, <a href="https://soho-okna.pl">soho-okna.pl</a> features only a placeholder page.
 
 ## About the website
 
-I made all the necessary stuff required to host a functional static website with custom domain - from configuring the domain to managing hosting and deploying implemented website.
+I handled all the necessary steps to set up a fully functional static website with a custom domain, from configuring the domain and hosting to deploying the website.
 
 ![HomePageDesktop]
 
-Also the website is fully responsive both for desktops and mobile devices.
+The website is also fully responsive, ensuring an optimal user experience on both desktop and mobile devices.
 
 
-<p align="center">
-    <img src="Images/SohoOknaDoorsMobile.png" alt="DoorsPageMobile">
-</p>
+<p align="center"> <img src="Images/SohoOknaDoorsMobile.png" alt="DoorsPageMobile"> </p>
 
-## Project's structure and the React implementation
+## Project Structure and React Implementation
 
-The project was developed using React framework, with scripts written in TypeScript. The project uses the MUI library for a nice looking components. To show how the project was implmeneted, there is an example below, showing how the door name is dynamically displayed, based on a chosen slide in a carousel. 
+The project was developed using the React framework, with TypeScript for scripting. The MUI library was utilized for visually appealing components. Below is an example of how the dynamic display of door names is implemented, based on the selected slide in a carousel.
 
-### Example scirpt - dynamic doors strings based on a type
+<br>
 
-- **DoorsTitles** - collection of door names, represented in a code as the dictionary, with a enum as a key, and an array of strings as a value
-Doors section describing displayed door is consisted of three main eslements:
-- **OfferingDoorsCarousel** - shows all of the door types as a carousel element
-- **DoorsModelsSection** - displays Currently chosen slide (the middle one) has it's name displayed below. It also sets the _CurrentSlide_ state, based on the middle slide
+### Example scirpt - Dynamic Door Names Based on Type
+The doors section is made up of three main elements:
+- **OfferingDoorsCarousel** - displays all door types in a carousel format and sets the _CurrentSlide_ state
+- **DoorsModelsSection** - displays the currently selected slide (the middle one) with the door's name below it
+- **OfferingDoorsSubpage** - Serves as the container for all elements in the carousel
+- **DoorsType, DoorsTitles & DoorsPhoto** - mock data files that include the available door types, their corresponding models, and photos
+<br>
+
+#### DoorsType, DoorsTitles & DoorsPhoto
+
+``` ts
+const DoorsPhoto = {
+    [DoorsType.PVC]: [
+        doors.PVCClassicLineImg, doors.PVCEkoGreenImg, doors.PVCEkoLineImg,
+        doors.PVCEkoVitreImg, doors.PVCModelowePVCImg, doors.PVCNakladkoweImg
+    ],
+    
+    [DoorsType.Aluminiowe]: [
+        doors.AluminiumAluLineImg, doors.AluminiumDespiroImg, doors.AluminiumEkoVitreImg
+    ],
+
+    [DoorsType.Drewnianie]: [
+        doors.DrewnianeEkoVitreImg, doors.DrewnianeWoodLineImg, doors.DrewnianeFrezowaneImg
+    ],
+
+    [DoorsType.Stalowe]: []
+}
+
+const DoorsTitles = {
+    [DoorsType.PVC]: [
+        "Panele ClassicLine", "Panele tłoczone EkoGreen", "Panele EkoLine",
+        "Panele szklane EkoVitre", "Drzwi modelowe PVC", "Panele nakładkowe"
+    ],
+    [DoorsType.Aluminiowe]: [
+        "Panele AluLine", "Panele aluminiowe Despiro", "Panele szklane EkoVitre"
+    ],
+    [DoorsType.Drewnianie]: [
+        "Panele szklane EkoVitre", "Panele WoodLine", "Panele frezowane"
+    ],
+    [DoorsType.Stalowe]: [],
+}
+```
+
+<br>
+
+#### OfferingDoorsCarousel
+Here’s a typical implementation of the react-slick carousel. It displays the doors as images in MUI's Paper component. By overriding the _afterChange_ method, we can change the state of the currently displayed slide when it changes.
+
+``` ts
+export default function OfferingDoorsCarousel({chosenDoorsType, setCurrentSlide}: {chosenDoorsType: DoorsType, setCurrentSlide: React.Dispatch<React.SetStateAction<number>>})
+{
+  const settings = {
+    infinite: true,
+    speed: 800,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    arrows: innerWidth > 980 ? true : false,
+    centerMode: true,
+    afterChange: (current: number) => {
+      //CAUTION: Exception related to proper handling of a center index, of multiple slides
+      //CAUTION: For some reason bigger collections of slides, have indexes applied properly
+      if(innerWidth > 980 && DoorsPhoto[chosenDoorsType].length <= 4) 
+      {
+        const middleIndex = (current + 1) % DoorsPhoto[chosenDoorsType].length;
+        setCurrentSlide(middleIndex);
+        return;
+      }
+      setCurrentSlide(current); console.log(current);
+    },
+    responsive: [
+        {
+            //INFO 1 - edge case, phones like "Z-Fold"
+            breakpoint: 360,
+            settings: {
+              slidesToShow: 1,//1
+              centerPadding: '40px'
+            },
+        },
+        // {...}
+    ],
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />
+  };
+
+  return(
+      <Box className="slider-container">
+          <Slider {...settings}>
+            {DoorsPhoto[chosenDoorsType].map((element, index) => ( 
+              <Paper 
+                key={index}
+                elevation={0} sx={{
+                backgroundImage: `url(${element})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                height: {xs: '450px'}
+                }}/>
+            ))}
+          </Slider>
+      </Box>
+  );
+}
+```
+<br>
+
+#### DoorsModelsSection
+This component displays the name and description of the selected door based on the currentSlide value and the chosenDoorsType
 
 ``` ts
 function DoorsModelsSection({currentSlide, chosenDoorsType, setCurrentSlide}:
@@ -67,10 +161,12 @@ function DoorsModelsSection({currentSlide, chosenDoorsType, setCurrentSlide}:
     );
 }
 ```
-The element _OffeeringDoorsCarousel_ uses the _react-slick_ implementing behaviour of the carousel. In the _Typography_ component, there is referenced a collection with door names based on a type. as an **Intrinsic Attribiute**.
+The OfferingDoorsCarousel component uses the react-slick carousel, and the Typography component displays the door name dynamically based on the selected type. The value is passed to the component as an **Intrinsic Attribiute**.
 
 
-#### The element below shows the states implementation and the 
+#### OfferingDoorsSubpage
+This container holds the carousel, titles, description, and buttons to select the door type.
+
 ``` ts
 export default function OfferingDoorsSubpage()
 {
@@ -109,7 +205,7 @@ export default function OfferingDoorsSubpage()
                             setCurrentSlide={setCurrentSlide} 
                             />
                         
-                        {/* Remeaining components */}
+                        {/* ... Remeaining components ... */}
 
                     </Stack>
                 </Box>
@@ -123,11 +219,11 @@ export default function OfferingDoorsSubpage()
 
 ## General IT service
 
-Alongside the website aviable through the custom domain, I prepared the custom e-mail address as well (kontakt@soho-okna.pl). This required exposing the domain to the mailing service.
+In addition to the website hosted on a custom domain, I also set up a custom email address (kontakt@soho-okna.pl). This required integrating the domain with the email service provider.
 
 ## Marketing materials
 
-Additionally, I prepared all of the needed marketing materials, such us:
+I also created the following marketing materials for the company:
 
 ### Company logo
 
