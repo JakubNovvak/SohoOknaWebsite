@@ -1,4 +1,11 @@
-<div><br/> <p align="center"> <img src="Images/LogoUpdated.svg" alt="Soho Okna Logo" style="width: 250px"> <h2 align="center">Soho Okna - Website Development and Other IT Services</h2> </p> </div>
+<div id="readme-top">
+    <br/> 
+    <p align="center"> 
+        <img src="Images/LogoUpdated.svg" alt="Soho Okna Logo" style="width: 250px"> 
+            <h2 align="center">Soho Okna - Website Development and Other IT Services
+            </h2> 
+    </p> 
+</div>
 Soho Okna is a small company I have been collaborating with since the end of July. Our partnership involved a range of IT services (e.g., domain and email configuration), graphic design work (examples below), and website development. There are plans to create a CMS server, but currently, the website is a static site built using React.
 
 <br>
@@ -17,6 +24,8 @@ The website is also fully responsive, ensuring an optimal user experience on bot
 
 
 <p align="center"> <img src="Images/SohoOknaDoorsMobile.png" alt="DoorsPageMobile"> </p>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Project Structure and React Implementation
 
@@ -217,9 +226,13 @@ export default function OfferingDoorsSubpage()
 }
 ```
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## General IT service
 
 In addition to the website hosted on a custom domain, I also set up a custom email address (kontakt@soho-okna.pl). This required integrating the domain with the email service provider.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Marketing materials
 
@@ -248,6 +261,8 @@ I also created the following marketing materials for the company:
 <p align="center">
     <img src="Images/SohoOknaFlyer.png" alt="Soho Okna Flyer">
 </p>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTACT -->
 ## Contact
