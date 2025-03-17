@@ -1,7 +1,9 @@
 <div><br/>
 
   <p align="center">
+    <img src="Images/LogoUpdated.svg" alt="Soho Okna Logo" style="width: 250px">
     <h2 align="center">Soho Okna - Website development and other IT services</h2>
+  </p>
     
 </div>
 
@@ -127,22 +129,28 @@ Alongside the website aviable through the custom domain, I prepared the custom e
 
 Additionally, I prepared all of the needed marketing materials, such us:
 
+### Company logo
+
+<p align="center">
+    <img src="Images/LogoUpdated.svg" style="width: 250px" alt="Soho Okna logo">
+</p>
+
 ### Bussines card
 
 <p align="center">
-    <img src="Images/SohoOknaBussinessCardFront.png" alt="BussinesCard">
+    <img src="Images/SohoOknaBussinessCardFront.png" alt="Soho Okna Bussines Card">
 </p>
 
 ### Banner in a bigger format
 
 <p align="center">
-    <img src="Images/SohoOknaBanner.png" alt="Banner">
+    <img src="Images/SohoOknaBanner.png" alt="Soho Okna Banner">
 </p>
 
 ### Flyer
 
 <p align="center">
-    <img src="Images/SohoOknaFlyer.png" alt="Banner">
+    <img src="Images/SohoOknaFlyer.png" alt="Soho Okna Flyer">
 </p>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
